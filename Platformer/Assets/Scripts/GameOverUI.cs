@@ -11,12 +11,13 @@ public class GameOverUI : MonoBehaviour
 
     void Start()
     {
-        int finalScore = PlayerPrefs.GetInt("FinalScore", 0);
+        int finalScore = GameManager.Instance.GetScore();
         finalScoreText.text = "Final Score: " + finalScore;
     }
 
     public void TryAgain()
     {
+        GameManager.Instance.ResetGame();
         SceneManager.LoadScene("GameScene");
     }
 }
