@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            AudioManager.Instance.PlaySoundEffect(AudioManager.Instance.jumpSound);
         }
     }
 
@@ -55,7 +56,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Coin"))
         {
             GameManager.Instance.AddScore(10);
-            Destroy(other.gameObject);
+            CoinPoolManager.Instance.ReturnCoin(other.gameObject);
         }
     }
 
