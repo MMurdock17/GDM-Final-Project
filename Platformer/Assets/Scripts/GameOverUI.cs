@@ -8,6 +8,7 @@ public class GameOverUI : MonoBehaviour
 {
 
     public TextMeshProUGUI finalScoreText;
+    public TMP_InputField playerNameInput;
 
     void Start()
     {
@@ -19,5 +20,22 @@ public class GameOverUI : MonoBehaviour
     {
         GameManager.Instance.ResetGame();
         SceneManager.LoadScene("GameScene");
+
+        string playerName = playerNameInput.text;
+
+        if (string.IsNullOrEmpty(playerName))
+        {
+            playerName = "Anonymous";
+        }
+
+        int finalScore = GameManager.Instance.GetScore();
+        float completionTime = Time.timeSinceLevelLoad;
+
+        DatabaseManager.Instance.SaveHighScore(playerName, finalScore, completionTime);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

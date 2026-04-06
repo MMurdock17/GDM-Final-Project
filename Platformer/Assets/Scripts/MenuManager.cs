@@ -11,4 +11,14 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene("GameScene");
     }
 
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void LoadScoresScene()
+    {
+        SceneManager.LoadScene("HighScores");
+    }
+
 }
